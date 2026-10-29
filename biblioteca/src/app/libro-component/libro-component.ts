@@ -25,6 +25,7 @@ export class LibroComponent {
   titulo = '';
   autor = '';
   anio: number | null = null;
+  editarPosicion = -1;
 
   
   guardar(){
@@ -38,6 +39,7 @@ export class LibroComponent {
       return;
     }
 
+    if (this.editarPosicion === -1) {
     const nuevo = {
       id: Math.max(0, ...this.libros.map(e => e.id)) + 1,
       codigo: this.codigo,
@@ -45,10 +47,21 @@ export class LibroComponent {
       autor: this.autor,
       anio: this.anio
     }
-
     this.libros.push(nuevo);
+
+  }
+  else {
+      this.libros[this.editarPosicion].autor = this.autor;
+      this.libros[this.editarPosicion].codigo = this.codigo;
+      this.libros[this.editarPosicion].titulo = this.titulo;
+      this.libros[this.editarPosicion].anio = this.anio;
+    }
+
+    
     this.limpiar();
     this.guardarEnLocalStore();
+    this.editarPosicion = -1;
+
 
   }
 
@@ -57,6 +70,15 @@ export class LibroComponent {
     this.titulo = '';
     this.autor = '';
     this.anio = null;
+    this.editarPosicion = -1;
+  }
+
+  editar (i:number){
+    this.editarPosicion = i;
+    this.codigo = this.libros[i].codigo;
+    this.titulo = this.libros[i].titulo;
+    this.autor = this.libros[i].autor;
+    this.anio = this.libros[i].anio;
   }
 
   guardarEnLocalStore () {

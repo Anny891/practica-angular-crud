@@ -16,6 +16,10 @@
 
     <button type="submit">Guardar</button>
 
+    @if (editarPosicion !== -1){
+        <button type="button" (click)="limpiar()">Cancelar</button>
+    }
+
 
 </form>
 </div>
@@ -35,13 +39,16 @@
         <th>Año</th>
     </tr>
 
-    @for (libro of libros; track libro.id){
+    @for (libro of libros; track libro.id; let i = $index){
         <tr>
             <td>{{libro.id}}</td>
             <td>{{libro.codigo}}</td>
             <td>{{libro.titulo}}</td>
             <td>{{libro.autor}}</td>
             <td>{{libro.anio}}</td>
+            <td>
+                <button type="button" (click)="editar(i)">Editar</button>
+            </td>
         </tr>
     }
 
