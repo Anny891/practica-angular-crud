@@ -81,6 +81,15 @@ export class LibroComponent {
     this.anio = this.libros[i].anio;
   }
 
+  eliminar (i: number) {
+    if (confirm('¿Deseas eliminar estos datos?')){
+      this.libros.splice(i, 1);
+      this.guardarEnLocalStore();
+    }
+    
+  }
+
+
   guardarEnLocalStore () {
     localStorage.setItem('librosBiblioteca', JSON.stringify(this.libros));
   }

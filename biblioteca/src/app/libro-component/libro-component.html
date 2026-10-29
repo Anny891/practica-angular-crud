@@ -37,6 +37,7 @@
         <th>Titulo</th>
         <th>autor</th>
         <th>Año</th>
+        <th>Acciones</th>
     </tr>
 
     @for (libro of libros; track libro.id; let i = $index){
@@ -48,6 +49,9 @@
             <td>{{libro.anio}}</td>
             <td>
                 <button type="button" (click)="editar(i)">Editar</button>
+            </td>
+            <td>
+                <button type="button" (click)="eliminar(i)">Eliminar</button>
             </td>
         </tr>
     }
