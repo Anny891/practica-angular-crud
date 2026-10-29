@@ -21,6 +21,44 @@ export class LibroComponent {
 
   libros : nuevoLibro[]= [];
 
+  codigo = '';
+  titulo = '';
+  autor = '';
+  anio: number | null = null;
+
+  
+  guardar(){
+    if (this.codigo.trim() == '' || this.titulo.trim() == '' || this.autor.trim() == '' || this.anio === null) {
+      alert ('Datos incorrectos')
+      return;
+    }
+
+    if (this.anio < 1000 || this.anio > 9999  || !Number.isInteger(this.anio)) {
+      alert ('Rango malos')
+      return;
+    }
+
+    const nuevo = {
+      id: Math.max(0, ...this.libros.map(e => e.id)) + 1,
+      codigo: this.codigo,
+      titulo: this.titulo,
+      autor: this.autor,
+      anio: this.anio
+    }
+
+    this.libros.push(nuevo);
+    this.limpiar();
+    this.guardarEnLocalStore();
+
+  }
+
+  limpiar () {
+    this.codigo = '';
+    this.titulo = '';
+    this.autor = '';
+    this.anio = null;
+  }
+
   guardarEnLocalStore () {
     localStorage.setItem('librosBiblioteca', JSON.stringify(this.libros));
   }

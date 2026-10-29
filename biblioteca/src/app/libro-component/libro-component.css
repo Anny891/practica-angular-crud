@@ -1,0 +1,20 @@
+.reg {
+    width: 200px;
+    padding: 20px;
+    background-color: rgb(136, 119, 153);
+    border: 1px solid gray;
+    margin: auto;
+}
+
+label {
+    display: block;
+}
+
+input {
+    display: block;
+}
+
+h1 {
+    color: blueviolet;
+    margin: auto;
+}
