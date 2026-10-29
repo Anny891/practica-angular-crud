@@ -24,6 +24,7 @@ export class EstudianteComponent {
   nombre = '';
   carrera = '';
   fechaIngreso = '';
+  editarPosicion = -1;
 
   guardar(){
     if (this.cuenta.trim()== '' || this.nombre.trim() == '' || this.carrera.trim() == '' || this.fechaIngreso.trim() == ''){
@@ -31,16 +32,24 @@ export class EstudianteComponent {
       return;
     }
 
+    if ( this.editarPosicion == -1) {
     const nuevoEstudiante = {
       id: Math.max(0, ...this.estudiantes.map(e => e.id)) + 1,
       cuenta: this.cuenta,
       nombre: this.nombre,
       carrera: this.carrera,
       fechaIngreso:  this.fechaIngreso
+      }
+      this.estudiantes.push(nuevoEstudiante);
+    } else {
+        this.estudiantes[this.editarPosicion].cuenta = this.cuenta;
+        this.estudiantes[this.editarPosicion].nombre = this.nombre;
+        this.estudiantes[this.editarPosicion].carrera = this.carrera;
+        this.estudiantes[this.editarPosicion].fechaIngreso = this.fechaIngreso;
+      }
 
-    }
 
-    this.estudiantes.push(nuevoEstudiante);
+    
     this.limpiar();
     this.guardarEnLocalStore();
   }
@@ -50,6 +59,15 @@ export class EstudianteComponent {
     this.nombre = '';
     this.carrera = '';
     this.fechaIngreso = '';
+    this.editarPosicion = -1
+  }
+
+  editar(i: number) {
+    this.editarPosicion = i;
+    this.cuenta = this.estudiantes[i].cuenta;
+    this.nombre = this.estudiantes[i].nombre
+    this.carrera = this.estudiantes[i].carrera;
+    this.fechaIngreso = this.estudiantes[i].fechaIngreso
   }
 
 

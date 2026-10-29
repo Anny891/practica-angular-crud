@@ -17,6 +17,9 @@
     <input type="date" name="fechaIngreso" id="fecha" [(ngModel)]="fechaIngreso" required>
 
     <button type="submit">Guardar</button>
+    @if (editarPosicion !== -1){
+        <button type="button" (click)="limpiar()">Cancelar</button>
+    }
 
 </form>
 </div>
@@ -36,13 +39,16 @@
         <th>FechaIngreso</th>
     </tr>
 
-    @for (estudiante of estudiantes; track estudiante.id){
+    @for (estudiante of estudiantes; track estudiante.id; let i = $index){
         <tr>
             <td>{{estudiante.id}}</td>
             <td>{{estudiante.cuenta}}</td>
             <td>{{estudiante.nombre}}</td>
             <td>{{estudiante.carrera}}</td>
             <td>{{estudiante.fechaIngreso}}</td>
+            <td>
+                <button type="button" (click)="editar(i)">Actualizar</button>
+            </td>
         </tr>
     }
 </table>
