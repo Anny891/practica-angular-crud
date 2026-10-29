@@ -42,11 +42,13 @@
         <td>{{producto.id}}</td>
          <td>{{producto.codigo}}</td>
         <td>{{producto.nombre}}</td>
-        <td>{{producto.precio}}</td>
+        <td> L {{producto.precio}}</td>
         <td>{{producto.existencia}}</td>
         <td>
             <button type="button" (click)="editar(i)">Editar</button>
+             <button type="button" (click)="eliminar(i)">Eliminar</button>
         </td>
+       
     </tr>
 
        

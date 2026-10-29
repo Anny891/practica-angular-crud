@@ -32,7 +32,7 @@ export class ProductoComponent {
       return;
     }
 
-    if (this.precio <= 0 || this.existencia < 0 || !Number.isInteger(this.precio) || !Number.isInteger(this.existencia)) {
+    if (this.precio <= 0 || this.existencia < 0 ||  !Number.isInteger(this.existencia)) {
       alert ('Datos Equivocados !!!!')
       return;
     }
@@ -74,6 +74,13 @@ export class ProductoComponent {
     this.nombre = this.productos[i].nombre;
     this.precio = this.productos[i].precio;
     this.existencia = this.productos[i].existencia;
+  }
+
+  eliminar (i: number) {
+    if (confirm('¿Quieres eliminar el dato?')){
+      this.productos.splice(i, 1);
+      this.guardarEnLocalStore();
+    }
   }
 
   guardarEnLocalStore(){
