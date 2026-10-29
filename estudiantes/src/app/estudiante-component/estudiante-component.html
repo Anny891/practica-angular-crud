@@ -1,3 +1,31 @@
-<p>estudiante-component works!</p>
+
+
+<h1>Registro Estudiantes</h1>
+
+<p>El total de estudiantes es: {{estudiantes.length}}</p>
+
+@if (estudiantes.length == 0) {
+    <p>La tabla esta vacia</p>
+}
+<table border="2">
+
+    <tr>
+        <th>ID</th>
+        <th>Cuenta</th>
+        <th>Nombre</th>
+        <th>Carrera</th>
+        <th>FechaIngreso</th>
+    </tr>
+
+    @for (estudiante of estudiantes; track estudiante.id){
+        <tr>
+            <td>{{estudiante.id}}</td>
+            <td>{{estudiante.cuenta}}</td>
+            <td>{{estudiante.nombre}}</td>
+            <td>{{estudiante.carrera}}</td>
+            <td>{{estudiante.fechaIngreso}}</td>
+        </tr>
+    }
+</table>
 
 <button type="button" (click)="cerrarSesion()">Cerrar Sesion</button>
