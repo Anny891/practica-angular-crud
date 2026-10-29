@@ -70,6 +70,12 @@ export class EstudianteComponent {
     this.fechaIngreso = this.estudiantes[i].fechaIngreso
   }
 
+  eliminar (i: number) {
+    if (confirm('¿Desea eliminarlo?')){
+      this.estudiantes.splice(i, 1);
+      this.guardarEnLocalStore();
+    }
+  }
 
   guardarEnLocalStore(){
     localStorage.setItem('registrosEstudiantes', JSON.stringify(this.estudiantes));
