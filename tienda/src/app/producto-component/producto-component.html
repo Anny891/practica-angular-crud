@@ -15,6 +15,9 @@
     <input type="number" name="existencia" id="existencia" [(ngModel)]="existencia" required>
 
     <button type="submit">Guardar</button>
+    @if (editarPosicion !== -1){
+        <button type="button" (click)="limpiar()">Cancelar</button>
+    }
 
 </form>
 </div>
@@ -31,14 +34,21 @@
         <th>Nombre</th>
         <th>Precio</th>
         <th>Existencia</th>
+        <th>Acciones</th>
     </tr>
 
-    @for (producto of productos; track producto.id) {
+    @for (producto of productos; track producto.id; let i = $index) {
+    <tr>
         <td>{{producto.id}}</td>
          <td>{{producto.codigo}}</td>
         <td>{{producto.nombre}}</td>
         <td>{{producto.precio}}</td>
         <td>{{producto.existencia}}</td>
+        <td>
+            <button type="button" (click)="editar(i)">Editar</button>
+        </td>
+    </tr>
+
        
     }
 

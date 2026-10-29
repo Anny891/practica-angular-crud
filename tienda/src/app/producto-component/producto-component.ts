@@ -24,6 +24,7 @@ export class ProductoComponent {
   nombre = '';
   precio: number | null = null;
   existencia: number | null = null;
+  editarPosicion = -1;
 
   guardar(){
     if (this.codigo.trim() == '' || this.nombre.trim()=='' || this.precio == null || this.existencia == null){
@@ -31,10 +32,12 @@ export class ProductoComponent {
       return;
     }
 
-    if (this.precio < 0 || this.existencia < 0 || !Number.isInteger(this.precio) || !Number.isInteger(this.existencia)) {
+    if (this.precio <= 0 || this.existencia < 0 || !Number.isInteger(this.precio) || !Number.isInteger(this.existencia)) {
       alert ('Datos Equivocados !!!!')
+      return;
     }
 
+    if (this.editarPosicion == -1){
     const nuevo = {
       id: Math.max(0, ...this.productos.map(e => e.id)) + 1,
       codigo: this.codigo,
@@ -42,10 +45,18 @@ export class ProductoComponent {
       precio: this.precio,
       existencia: this.existencia
     }
-
     this.productos.push(nuevo);
+  } else {
+    this.productos[this.editarPosicion].codigo = this.codigo;
+    this.productos[this.editarPosicion].nombre = this.nombre;
+    this.productos[this.editarPosicion].precio = this.precio;
+    this.productos[this.editarPosicion].existencia = this.existencia
+  }
+
+    
     this.limpiar();
     this.guardarEnLocalStore();
+    this.editarPosicion = -1;
 
   }
 
@@ -54,8 +65,16 @@ export class ProductoComponent {
     this.nombre = '';
     this.precio = null;
     this.existencia = null;
+    this.editarPosicion = -1
   }
 
+  editar (i:number) {
+    this.editarPosicion = i;
+    this.codigo = this.productos[i].codigo;
+    this.nombre = this.productos[i].nombre;
+    this.precio = this.productos[i].precio;
+    this.existencia = this.productos[i].existencia;
+  }
 
   guardarEnLocalStore(){
     localStorage.setItem('productosTienda', JSON.stringify(this.productos))
