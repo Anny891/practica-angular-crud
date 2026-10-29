@@ -1,0 +1,47 @@
+<div class="prod">
+<h1> Productos</h1>
+
+<form (ngSubmit)="guardar()">
+    <label>Codigo</label>
+    <input type="text" id="codigo" name="codigo" [(ngModel)]="codigo" required>
+
+    <label>Nombre</label>
+    <input type="text" name="nombre" id="nombre" [(ngModel)]="nombre" required >
+
+    <label>Precio</label>
+    <input type="number" name="precio" id="precio" [(ngModel)]="precio" required>
+
+    <label>Existencia</label>
+    <input type="number" name="existencia" id="existencia" [(ngModel)]="existencia" required>
+
+    <button type="submit">Guardar</button>
+
+</form>
+</div>
+
+<p>Cantidad de productos: {{productos.length}}</p>
+
+@if (productos.length == 0){
+    <p>La tabla se encuentra Vacia</p>
+}
+<table border="2">
+    <tr>
+        <th>Id</th>
+        <th> Codigo</th>
+        <th>Nombre</th>
+        <th>Precio</th>
+        <th>Existencia</th>
+    </tr>
+
+    @for (producto of productos; track producto.id) {
+        <td>{{producto.id}}</td>
+         <td>{{producto.codigo}}</td>
+        <td>{{producto.nombre}}</td>
+        <td>{{producto.precio}}</td>
+        <td>{{producto.existencia}}</td>
+       
+    }
+
+
+</table>
+<button type="button" (click)="cerrarSesion()">Cerrar Sesion</button>
