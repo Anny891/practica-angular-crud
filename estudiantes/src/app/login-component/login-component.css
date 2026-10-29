@@ -1,0 +1,20 @@
+.login {
+    width: 200px;
+    padding: 40px;
+    border: 1px solid gray;
+    background-color: rgb(79, 160, 160);
+    margin: auto;
+}
+
+input {
+    display: block;
+}
+
+label {
+    display: block;
+}
+
+h1 {
+    color: rgb(1, 32, 32);
+    margin: auto;
+}
