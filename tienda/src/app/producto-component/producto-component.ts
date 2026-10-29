@@ -45,6 +45,7 @@ export class ProductoComponent {
 
     this.productos.push(nuevo);
     this.limpiar();
+    this.guardarEnLocalStore();
 
   }
 
