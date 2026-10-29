@@ -20,6 +20,37 @@ export class EstudianteComponent {
 
   estudiantes: nuevoEstudiante[] = [];
 
+  cuenta = '';
+  nombre = '';
+  carrera = '';
+  fechaIngreso = '';
+
+  guardar(){
+    if (this.cuenta.trim()== '' || this.nombre.trim() == '' || this.carrera.trim() == '' || this.fechaIngreso.trim() == ''){
+      alert ('Datos Incompletos')
+      return;
+    }
+
+    const nuevoEstudiante = {
+      id: Math.max(0, ...this.estudiantes.map(e => e.id)) + 1,
+      cuenta: this.cuenta,
+      nombre: this.nombre,
+      carrera: this.carrera,
+      fechaIngreso:  this.fechaIngreso
+
+    }
+
+    this.estudiantes.push(nuevoEstudiante);
+    this.limpiar();
+    this.guardarEnLocalStore();
+  }
+
+  limpiar(){
+    this.cuenta = '';
+    this.nombre = '';
+    this.carrera = '';
+    this.fechaIngreso = '';
+  }
 
 
   guardarEnLocalStore(){

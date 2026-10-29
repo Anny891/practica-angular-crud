@@ -1,6 +1,25 @@
 
-
+<div class="reg">
 <h1>Registro Estudiantes</h1>
+
+<form (ngSubmit)="guardar()"> 
+
+    <label>Cuenta</label>
+    <input type="text" name="cuenta" id="cuenta" [(ngModel)]="cuenta" required>
+
+    <label>Nombre</label>
+     <input type="text" name="nombre" id="nombre" [(ngModel)]="nombre" required>
+
+     <label>Carrera</label>
+     <input type="text" name="carrera" id="carrera" [(ngModel)]="carrera" required>
+
+     <label>Fecha Ingreso</label>
+    <input type="date" name="fechaIngreso" id="fecha" [(ngModel)]="fechaIngreso" required>
+
+    <button type="submit">Guardar</button>
+
+</form>
+</div>
 
 <p>El total de estudiantes es: {{estudiantes.length}}</p>
 
