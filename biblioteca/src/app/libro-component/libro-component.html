@@ -1,3 +1,31 @@
-<p>libro-component works!</p>
+
+<h1> Registrar Libro</h1>
+
+<p>La cantidad de libros: {{libros.length}}</p>
+
+@if ( libros.length == 0){
+    <p>No hay datos en la tabla</p>
+}
+<table border="2">
+
+    <tr>
+        <th>Id</th>
+        <th>Codigo</th>
+        <th>Titulo</th>
+        <th>autor</th>
+        <th>Año</th>
+    </tr>
+
+    @for (libro of libros; track libro.id){
+        <tr>
+            <td>{{libro.id}}</td>
+            <td>{{libro.codigo}}</td>
+            <td>{{libro.titulo}}</td>
+            <td>{{libro.autor}}</td>
+            <td>{{libro.anio}}</td>
+        </tr>
+    }
+
+</table>
 
 <button type="button" (click)="cerrarSesion()">Cerrar Sesion</button>
