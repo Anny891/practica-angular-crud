@@ -1,6 +1,27 @@
 
-
+<div class="form">
 <h1>Registro Mascotas</h1>
+<form (ngSubmit)="guardar()">
+
+    <label>Nombre</label>
+    <input type="text" name="nombre" id="nombre" [(ngModel)]="nombre" required>
+
+    <label>Especie</label>
+    <input type="text" name="especie" id="especie" [(ngModel)]="especie" required>
+
+    <label>Edad</label>
+    <input type="number" name="edad" id="edad" [(ngModel)]="edad" required>
+
+    <label>Propietario</label>
+    <input type="text" name="propietario" id="propietario" [(ngModel)]="propietario" required>
+
+    <button type="submit">Guardar</button>
+    @if (editarPosicion !== -1){
+        <button type="button" (click)="limpiar()">Cancelar</button>
+    }
+
+</form>
+</div>
 
 <p>Cantidad de mascotas: {{mascotas.length}}</p>
 
@@ -16,13 +37,16 @@
         <th>Propietario</th>
     </tr>
 
-    @for (mascota of mascotas; track mascota.id){
+    @for (mascota of mascotas; track mascota.id; let i= $index){
         <tr>
             <td>{{mascota.id}}</td>
             <td>{{mascota.nombre}}</td>
             <td>{{mascota.especie}}</td>
             <td>{{mascota.edad}}</td>
             <td>{{mascota.propietario}}</td>
+            <td>
+                <button type="button" (click)="editar(i)">Editar</button>
+            </td>
         </tr>
     }
 </table>
