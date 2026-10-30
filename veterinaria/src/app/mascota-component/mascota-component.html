@@ -15,7 +15,7 @@
     <label>Propietario</label>
     <input type="text" name="propietario" id="propietario" [(ngModel)]="propietario" required>
 
-    <button type="submit">Editar</button>
+    <button type="submit">Guardar</button>
     @if (editarPosicion !== -1){
         <button type="button" (click)="limpiar()">Cancelar</button>
     }
@@ -46,6 +46,7 @@
             <td>{{mascota.propietario}}</td>
             <td>
                 <button type="button" (click)="editar(i)">Editar</button>
+                <button type="button" (click)="eliminar(i)">Eliminar</button>
             </td>
         </tr>
     }

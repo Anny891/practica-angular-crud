@@ -75,8 +75,15 @@ export class MascotaComponent {
     this.edad = this.mascotas[i].edad;
     this.propietario= this.mascotas[i].propietario;
     this.especie = this.mascotas[i]. especie;
-
   }
+
+  eliminar(i: number){
+    if (confirm('¿Quieres eliminar estos datos ?')){
+      this.mascotas.splice(i, 1);
+      this.guardarEnLocalStore();
+    }
+  }
+
   guardarEnLocalStore(){
     localStorage.setItem('mascotasVeterinaria', JSON.stringify(this.mascotas));
   }
