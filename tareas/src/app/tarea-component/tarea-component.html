@@ -1,5 +1,29 @@
 
 <h1>Agenda de tareas</h1>
+<div class="reg">
+  <h1>Registrar Tarea</h1>
+
+  <form (ngSubmit)="guardar()">
+
+    <label>Título</label>
+    <input type="text" name="titulo" [(ngModel)]="titulo" required>
+
+    <label>Descripción</label>
+    <textarea name="descripcion" [(ngModel)]="descripcion" required></textarea>
+
+    <label>Fecha límite</label>
+    <input type="date" name="fechaLimite" [(ngModel)]="fechaLimite" required>
+
+    <label>Estado</label>
+    <select name="estado" [(ngModel)]="estado">
+      <option value="Pendiente">Pendiente</option>
+      <option value="Completada">Completada</option>
+    </select>
+
+    <button type="submit">Guardar</button>
+
+  </form>
+</div>
 
 <p>Cantidad de tareas: {{ tareas.length }}</p>
 

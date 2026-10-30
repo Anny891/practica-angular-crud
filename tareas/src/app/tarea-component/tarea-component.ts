@@ -19,23 +19,42 @@ interface nuevaTarea {
 
 export class TareaComponent {
 
-  tareas: nuevaTarea[] = [
-    {
-    id: 1,
-    titulo: 'Repasar Angular',
-    descripcion: 'Practicar ngModel',
-    fechaLimite: '2026-11-02',
-    estado: 'Pendiente'
-  },
-  {
-    id: 2,
-    titulo: 'Leer apuntes',
-    descripcion: 'Revisar componentes',
-    fechaLimite: '2026-11-03',
-    estado: 'Completada'
-  }
-  ];
+  tareas: nuevaTarea[] = [];
+  titulo = '';
+  descripcion = '';
+  fechaLimite = '';
+  estado = 'Pendiente';
 
+  guardar() {
+  if (this.titulo.trim() === '' || this.descripcion.trim() === '' || this.fechaLimite === '') {
+    alert('Datos incompletos');
+    return;
+  }
+
+  if (this.estado !== 'Pendiente' && this.estado !== 'Completada') {
+    alert('Estado incorrecto');
+    return;
+  }
+
+  const nueva = {
+    id: Math.max(0, ...this.tareas.map(e => e.id)) + 1,
+    titulo: this.titulo,
+    descripcion: this.descripcion,
+    fechaLimite: this.fechaLimite,
+    estado: this.estado
+  };
+
+  this.tareas.push(nueva);
+  this.limpiar();
+  this.guardarEnLocalStore();
+}
+
+limpiar() {
+  this.titulo = '';
+  this.descripcion = '';
+  this.fechaLimite = '';
+  this.estado = 'Pendiente';
+}
 
   guardarEnLocalStore() {
     localStorage.setItem('agendaTareas', JSON.stringify(this.tareas));
