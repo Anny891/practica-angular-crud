@@ -1,3 +1,30 @@
-<p>mascota-component works!</p>
+
+
+<h1>Registro Mascotas</h1>
+
+<p>Cantidad de mascotas: {{mascotas.length}}</p>
+
+@if (mascotas.length == 0) {
+    <p>No hay datos en la tabla</p>
+}
+<table border="3">
+    <tr>
+        <th>Id</th>
+        <th>Nombre</th>
+        <th>Especie</th>
+        <th>Edad</th>
+        <th>Propietario</th>
+    </tr>
+
+    @for (mascota of mascotas; track mascota.id){
+        <tr>
+            <td>{{mascota.id}}</td>
+            <td>{{mascota.nombre}}</td>
+            <td>{{mascota.especie}}</td>
+            <td>{{mascota.edad}}</td>
+            <td>{{mascota.propietario}}</td>
+        </tr>
+    }
+</table>
 
 <button type="button" (click)="cerrarSesion()"> Cerrar Sesion </button>
