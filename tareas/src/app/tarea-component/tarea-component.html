@@ -21,6 +21,9 @@
     </select>
 
     <button type="submit">Guardar</button>
+    @if (editarPosicion !== -1) {
+   <button type="button" (click)="limpiar()">Cancelar</button>
+   }
 
   </form>
 </div>
@@ -38,15 +41,19 @@
     <th>Descripción</th>
     <th>Fecha límite</th>
     <th>Estado</th>
+    <th>Acciones</th>
   </tr>
 
-  @for (tarea of tareas; track tarea.id) {
+  @for (tarea of tareas; track tarea.id; let i = $index) {
     <tr>
       <td>{{ tarea.id }}</td>
       <td>{{ tarea.titulo }}</td>
       <td>{{ tarea.descripcion }}</td>
       <td>{{ tarea.fechaLimite }}</td>
       <td>{{ tarea.estado }}</td>
+      <td>
+        <button type="button" (click)="editar(i)">Editar</button>
+      </td>
     </tr>
   }
 </table>
