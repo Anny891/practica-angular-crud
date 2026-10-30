@@ -74,7 +74,12 @@ editar(i: number) {
   this.estado = this.tareas[i].estado;
 }
 
-
+eliminar(i: number) {
+  if (confirm('¿Deseas eliminar esta tarea?')) {
+    this.tareas.splice(i, 1);
+    this.guardarEnLocalStore();
+  }
+}
 
   guardarEnLocalStore() {
     localStorage.setItem('agendaTareas', JSON.stringify(this.tareas));
