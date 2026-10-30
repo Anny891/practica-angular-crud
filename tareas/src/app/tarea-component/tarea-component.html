@@ -1,3 +1,31 @@
 
 <h1>Agenda de tareas</h1>
+
+<p>Cantidad de tareas: {{ tareas.length }}</p>
+
+@if (tareas.length === 0) {
+  <p>No hay tareas registradas</p>
+}
+
+<table border="2">
+  <tr>
+    <th>ID</th>
+    <th>Título</th>
+    <th>Descripción</th>
+    <th>Fecha límite</th>
+    <th>Estado</th>
+  </tr>
+
+  @for (tarea of tareas; track tarea.id) {
+    <tr>
+      <td>{{ tarea.id }}</td>
+      <td>{{ tarea.titulo }}</td>
+      <td>{{ tarea.descripcion }}</td>
+      <td>{{ tarea.fechaLimite }}</td>
+      <td>{{ tarea.estado }}</td>
+    </tr>
+  }
+</table>
+
 <button type="button" (click)="cerrarSesion()">Cerrar sesión</button>
+
